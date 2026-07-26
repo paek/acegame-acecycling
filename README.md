@@ -22,7 +22,7 @@
 
 ACE Series는 단순한 경기 계측 프로그램이 아닙니다.
 
-ACE Series는 **사이클 경기 운영과 계측을 위한 하드웨어 독립형(Hardware Independent) 플랫폼**입니다.
+ACE Series는 **사이클에서 시작하는 지상 기반 스포츠 계측 및 경기 운영 플랫폼** 입니다.
 
 기존의 대부분의 계측 시스템은 특정 제조사의 장비와 소프트웨어가 하나의 제품으로 구성됩니다.
 
@@ -176,9 +176,12 @@ Plugin 또는 Driver만 추가하여 사용할 수 있도록 설계됩니다.
 
 ---
 
-# 지원 경기 종목
+# 적용 대상 경기
 
-ACE Series는 다양한 사이클 종목을 지원하도록 설계됩니다.
+ACE Series는 사이클 경기 운영 경험을 기반으로 시작되었지만,
+핵심 계측 및 경기 운영 구조는 특정 종목에 종속되지 않습니다.
+
+## 주요 개발 대상
 
 - 🚴 Road Cycling
 - 🚵 Mountain Bike (XCO)
@@ -189,6 +192,22 @@ ACE Series는 다양한 사이클 종목을 지원하도록 설계됩니다.
 - 🛣 Individual Time Trial (ITT)
 - 🔄 Circuit Race
 - 🚴 Track Cycling *(Planned)*
+
+## 확장 가능한 지상 경기
+
+- Marathon
+- Road Running
+- Trail Running
+- Cross-Country Running
+- Triathlon
+- Duathlon
+- Inline Skating
+- Obstacle Racing
+- Motorsport
+- 기타 출발·중간계측·결승 구조를 사용하는 지상 경기
+
+종목별 규정과 결과 처리 방식은 독립적인 Race Module로 구현하며,
+계측 장비 연동과 Timing Event 처리는 공통 ACE Core를 사용합니다.
 
 ---
 
