@@ -1,53 +1,133 @@
 # ACE Series
 
-> **Professional Cycling Timing & Race Operations Platform**
+<div align="center">
 
-ACE Series is an integrated platform designed for professional cycling events, providing accurate timing, race management, live results, and modular hardware integration.
+# 🚴 ACE Series
 
-The project aims to deliver a modern, flexible, and extensible ecosystem that supports multiple cycling disciplines while remaining independent of any specific hardware vendor.
+### Professional Cycling Timing & Race Operations Platform
+
+*A hardware-independent, modular platform for professional cycling events.*
+
+---
+
+Road Cycling • MTB • BMX • Downhill • Track Cycling • Time Trial
+
+</div>
+
+---
+
+# Overview
+
+ACE Series is a next-generation race timing and race operations platform designed specifically for cycling competitions.
+
+Unlike traditional timing systems that rely on a single hardware vendor, ACE Series is designed around an open and modular architecture that supports multiple timing technologies and hardware manufacturers.
+
+The platform combines timing, race management, live timing, finish verification, mobile applications, and hardware integration into a single ecosystem.
 
 ---
 
 # Vision
 
-Our goal is to build an open and modular race timing platform that can be adapted to various cycling events and future technologies.
+Our vision is to build an open, extensible and hardware-independent timing platform for professional cycling.
 
-Instead of being tied to a single RFID vendor or timing solution, ACE Series is designed around standardized interfaces, allowing organizers to choose the hardware that best fits their needs.
+ACE Series is designed to allow organizers to choose the most suitable hardware without changing their race management software.
+
+Rather than locking users into a single RFID or transponder vendor, ACE Series provides standardized interfaces for integrating multiple timing technologies.
 
 ---
 
-# Supported Cycling Disciplines
+# Supported Disciplines
 
 - 🚴 Road Cycling
-- 🚵 Mountain Bike (XCO / XCC / Marathon)
+- 🚵 Cross Country (XCO)
+- 🚵 Cross Country Short Track (XCC)
+- 🚵 Marathon (XCM)
 - 🚲 BMX Racing
 - ⛰ Downhill (DH)
-- ⏱ Individual Time Trial (ITT)
+- 🛣 Individual Time Trial (ITT)
 - 🔄 Circuit Race
-- 🚴 Track Cycling (Planned)
+- 🚴 Track Cycling *(Planned)*
 
 ---
 
 # Core Philosophy
 
-ACE Series is built on four key principles.
-
-## Hardware Independent
-
-The platform supports multiple hardware vendors through pluggable drivers.
-
-Examples include:
-
-- UHF RFID Readers
-- Photo Finish Cameras
-- Finish Capture Cameras
-- LoRa Sensors
-- Optical Sensors
-- GPS Devices
+ACE Series is built around five core principles.
 
 ---
 
-## Modular Architecture
+## 1. Hardware Independent
+
+ACE Series is **not tied to a single hardware vendor**.
+
+Supported hardware can be added through modular drivers.
+
+Examples include:
+
+- Passive RFID Readers
+- Active Transponder Systems
+- Photo Finish Systems
+- High-Speed Finish Cameras
+- Optical Timing Sensors
+- LoRa Timing Nodes
+- GPS Timing Devices
+- Manual Timing Consoles
+
+---
+
+## 2. Timing Technology Independent
+
+ACE Series supports multiple timing technologies.
+
+```
+Timing Sources
+
+├── Passive RFID
+├── Active Transponder
+├── Finish Capture
+├── Photo Finish
+├── Optical Sensor
+├── LoRa Sensor
+├── GPS Timing
+└── Manual Timing
+```
+
+All timing sources generate a common event format inside ACE Core.
+
+---
+
+## 3. Event-Driven Architecture
+
+Every connected device publishes standardized events.
+
+```
+RFID Reader
+Active Transponder
+Photo Finish
+Finish Capture
+LoRa Sensor
+Optical Sensor
+GPS
+
+        │
+        ▼
+
+  ACE Core Event Bus
+
+        │
+
+Race Manager
+Live Timing
+Judge UI
+Results
+API
+```
+
+The race management software never communicates directly with hardware.
+
+---
+
+## 4. Modular Design
 
 Every component operates independently.
 
@@ -58,188 +138,286 @@ ACE Series
 │   ├── Event Bus
 │   ├── API
 │   ├── SDK
-│   └── Plugin Framework
+│   ├── Plugin Framework
+│   └── Device Manager
 │
 ├── Circuit Race Manager
 ├── BMX Manager
+├── MTB Manager
 ├── Downhill Manager
-├── Live Timing
 ├── Finish Capture
 ├── Finish Viewer
-├── Judge Apps
-├── Marshal Apps
+├── Live Timing
+├── Judge Application
+├── Marshal Application
 └── Race Operations Platform
 ```
 
-Each module can be developed, maintained, and deployed independently.
+Each module can evolve independently while sharing the same core.
 
 ---
 
-## Real-time Event Driven
+## 5. Open Integration
 
-Every hardware device produces standardized events.
+ACE Series is designed for interoperability.
 
-```
-RFID Reader
-        │
-Photo Finish
-        │
-LoRa Sensor
-        │
-Finish Camera
-        │
-GPS
-        │
-───────────────
-ACE Core Event Bus
-───────────────
-        │
-Race Manager
-Live Timing
-Result System
-Judge UI
-API
-```
-
-This architecture allows new hardware to be integrated without modifying the race management software.
+Manufacturers can integrate their own hardware by implementing a timing driver without modifying the core platform.
 
 ---
 
-# Key Features
+# Timing Technologies
 
-## Professional Timing
+## Passive RFID
 
-- RFID Timing
-- Finish Capture
-- Photo Finish Integration
-- Manual Backup Timing
-- Optical Sensor Support
+Designed for affordable and flexible race timing.
 
----
+Features:
 
-## Race Management
+- EPC Gen2
+- Multi Reader Support
+- Multi Antenna Support
+- TCP/IP Communication
+- USB Communication
+- Reader Abstraction Layer
 
-- Rider Registration
-- Bib Management
-- Category Management
-- Heat Generation
-- Random Gate Assignment
-- Team Management
-- Result Processing
-- Time Penalties
-- DNS / DNF / OTL Management
-
----
-
-## Live Operations
-
-- Live Timing
-- TV Display
-- Judge Dashboard
-- Marshal Dashboard
-- Mobile Applications
-- Remote Monitoring
-
----
-
-## Connectivity
-
-- Ethernet
-- TCP/IP
-- USB
-- LoRa
-- REST API
-- WebSocket
-
----
-
-# RFID Integration
-
-ACE Series does not depend on a single RFID manufacturer.
-
-Supported hardware can be integrated through dedicated drivers.
-
-Current evaluation includes:
+Current evaluation:
 
 - CHAFON
-- INNOD
 - Hopeland
-- Impinj-based Readers
-
-Future support will continue to expand.
+- INNOD
+- Impinj Based Readers
 
 ---
 
-# Finish Capture
+## Active Transponder
 
-ACE Series includes a dedicated Finish Capture module.
+Designed for professional timing systems.
 
-Features include:
+Planned support includes:
 
-- High FPS Camera Support
-- Automatic Frame Capture
+- Multi-channel Detection
+- High-speed Racing
+- Long Range Detection
+- Multiple Decoder Support
+- Professional Timing Systems
+
+Examples:
+
+- Road Cycling
+- MTB
+- BMX
+- Running
+- Triathlon
+- Motorsport
+
+---
+
+## Finish Capture
+
+ACE Finish Capture is a dedicated video-assisted finish verification system.
+
+Features:
+
+- High FPS Cameras
+- Automatic Image Capture
 - Rider Identification
 - Manual Verification
 - Finish Viewer Integration
 
-The Finish Capture module works together with RFID to improve race accuracy.
+---
+
+## Photo Finish
+
+Support for professional photo finish systems.
+
+Planned features:
+
+- Image Synchronization
+- Timing Synchronization
+- External Photo Finish Integration
+- Result Verification
+
+---
+
+## Optical Sensors
+
+Support for:
+
+- Laser Sensors
+- Infrared Beam Sensors
+- Photoelectric Sensors
+- Start Gate Sensors
+
+---
+
+## LoRa Timing Network
+
+Designed for remote timing locations.
+
+Examples:
+
+- Intermediate Split
+- Downhill Start
+- Feed Zone
+- Mountain Checkpoint
+- Remote Timing Stations
+
+---
+
+## Manual Timing
+
+ACE Series always supports manual timing as a backup solution.
+
+Manual timing events are integrated into the same event processing pipeline.
+
+---
+
+# Race Management
+
+ACE Series provides comprehensive race management tools.
+
+Features include:
+
+- Rider Registration
+- Category Management
+- Team Management
+- Bib Assignment
+- Heat Generation
+- Random Gate Assignment
+- Qualification
+- Seeding
+- DNS
+- DNF
+- OTL
+- Time Penalties
+- Result Processing
+
+---
+
+# Live Operations
+
+Real-time race operations include:
+
+- Live Timing
+- Judge Dashboard
+- Marshal Dashboard
+- TV Display
+- Mobile Applications
+- Race Control
+- Event Monitoring
+
+---
+
+# Connectivity
+
+Supported communication methods include:
+
+- Ethernet
+- TCP/IP
+- USB
+- Serial (RS232 / RS485)
+- LoRa
+- REST API
+- WebSocket
+- Local Event Bus
+
+---
+
+# Hardware Architecture
+
+```
+Timing Hardware
+
+RFID Reader
+Active Transponder
+Photo Finish
+Finish Capture
+Optical Sensor
+LoRa Node
+
+        │
+
+Device Driver
+
+        │
+
+ACE Core
+
+        │
+
+Race Manager
+
+        │
+
+Results
+Live Timing
+Judge UI
+API
+```
+
+The platform is designed so that hardware can be replaced without changing race management software.
 
 ---
 
 # Designed for Officials
 
-ACE Series is developed with real race officials and organizers in mind.
+ACE Series is developed by active cycling officials with practical experience in race operations.
 
-The project focuses on reducing workload while improving accuracy and reliability during competitions.
+The focus is on:
+
+- Reliability
+- Simplicity
+- Accuracy
+- Speed
+- Expandability
 
 ---
 
 # Future Roadmap
 
-- AI-assisted Rider Detection
+Planned developments include:
+
+- AI Rider Detection
 - Automatic Bib Recognition
-- Multi-camera Finish Capture
+- Multi Camera Finish Capture
 - Cloud Synchronization
-- Remote Event Monitoring
 - Internationalization
 - UCI Workflow Support
-- Cross-platform Desktop Applications
+- Cross Platform Applications
+- Hardware SDK
+- Third-party Plugin SDK
 
 ---
 
-# Open Architecture
+# Current Status
 
-ACE Series is designed to be extended.
-
-Manufacturers and developers can integrate new devices using documented APIs and plugins.
-
-The platform encourages interoperability rather than vendor lock-in.
+| Module | Status |
+|----------|--------|
+| ACE Core | 🚧 In Development |
+| Race Manager | 🚧 In Development |
+| RFID Integration | 🚧 Evaluation |
+| Active Transponder | 📋 Planned |
+| Finish Capture | 🚧 In Development |
+| Photo Finish Integration | 📋 Planned |
+| Live Timing | 🚧 In Development |
+| Judge App | 🚧 In Development |
+| Marshal App | 📋 Planned |
 
 ---
 
-# Project Status
+# Philosophy
 
-Current Status:
+> Hardware should never dictate software.
 
-✅ Core Architecture Design
+ACE Series separates race management from timing hardware, allowing organizers to choose the best solution for every event.
 
-✅ Desktop Applications
-
-✅ Race Management
-
-🚧 RFID Integration
-
-🚧 Finish Capture
-
-🚧 Live Timing
-
-🚧 Judge Mobile Applications
+Our goal is to build an open ecosystem for professional cycling timing.
 
 ---
 
 # Contact
 
-ACE Series Development
+**ACE Series Development**
 
 Republic of Korea
 
