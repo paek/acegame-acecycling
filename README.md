@@ -1,373 +1,336 @@
-<div align="center">
-
 # 🚴 ACE Series
 
-## Any Hardware. One Platform.
-
-### Vendor-Independent Cycling Timing Platform
-
-Professional Timing • Race Operations • Live Timing • Finish Capture
-
-Road Cycling • MTB • BMX • Downhill • Track Cycling
+> **Any Hardware. One Platform.**
+>
+> **모든 계측 기술을 하나의 플랫폼으로.**
 
 ---
 
-**Build Once. Integrate Everything.**
-
-</div>
-
----
-
-# About
-
-ACE Series is an open and modular timing platform designed for professional cycling competitions.
-
-Unlike traditional timing software that depends on a specific hardware vendor, ACE Series separates race management from timing hardware through a unified event-driven architecture.
-
-Whether timing data comes from RFID, active transponders, photo finish systems, cameras, optical sensors, or future technologies, the race management software remains exactly the same.
-
-The hardware can change.
-
-The platform does not.
+> [!IMPORTANT]
+>
+> ## 📖 문서 정책 (Documentation Policy)
+>
+> 본 문서는 **ACE Series의 공식 한국어 문서(Official Source)** 입니다.
+>
+> `README.en.md`를 포함한 모든 영어 문서는 한국어 원본을 기반으로 작성되는 **공식 번역본(Official Translation)** 입니다.
+>
+> 문서 간 내용이 상이한 경우에는 **한국어 문서를 기준**으로 합니다.
 
 ---
 
-# Vision
+# ACE Series란?
 
-Our vision is simple.
+ACE Series는 단순한 경기 계측 프로그램이 아닙니다.
 
-> Any Hardware. One Platform.
+ACE Series는 **사이클 경기 운영과 계측을 위한 하드웨어 독립형(Hardware Independent) 플랫폼**입니다.
 
-ACE Series aims to become an open timing platform capable of integrating commercial timing systems, open hardware, and future technologies into a single ecosystem.
+기존의 대부분의 계측 시스템은 특정 제조사의 장비와 소프트웨어가 하나의 제품으로 구성됩니다.
 
-Instead of replacing existing timing systems, ACE Series connects them.
+ACE Series는 이러한 구조에서 벗어나 다양한 계측 기술과 다양한 제조사의 장비를 하나의 플랫폼에서 통합하여 사용할 수 있도록 설계되었습니다.
+
+즉,
+
+**하드웨어는 교체할 수 있지만 플랫폼은 유지됩니다.**
 
 ---
 
-# Core Principles
+# 프로젝트 비전
+
+ACE Series의 목표는 매우 단순합니다.
+
+> **어떤 계측 장비라도 하나의 플랫폼에서 사용할 수 있도록 한다.**
+
+RFID
+
+Active Transponder
+
+Photo Finish
+
+Finish Capture
+
+LoRa
+
+Optical Sensor
+
+GPS
+
+그리고 앞으로 등장할 새로운 계측 기술까지.
+
+ACE Series는 특정 기술을 위한 프로그램이 아니라 **모든 계측 기술을 위한 플랫폼**을 목표로 합니다.
+
+---
+
+# 왜 ACE Series인가?
+
+현재 대부분의 경기 계측 시스템은 다음과 같은 구조를 가지고 있습니다.
+
+```text
+MYLAPS
+    │
+MYLAPS Software
+
+Race Result
+    │
+Race Result Software
+
+RFID Reader
+    │
+Vendor Software
+```
+
+장비가 변경되면 소프트웨어도 함께 변경됩니다.
+
+ACE Series는 반대로 생각합니다.
+
+```text
+                Timing Technologies
+
+ RFID
+ Active Transponder
+ Photo Finish
+ Finish Capture
+ Optical Sensor
+ LoRa
+ GPS
+ Manual Timing
+
+                 │
+
+                 ▼
+
+             ACE Core
+
+                 │
+
+       Race Management Platform
+
+                 │
+
+ Live Timing
+ Judge
+ Marshal
+ Results
+ API
+ Viewer
+```
+
+계측 기술은 언제든 변경될 수 있습니다.
+
+그러나 경기 운영 플랫폼은 변경되지 않아야 합니다.
+
+---
+
+# 핵심 철학
+
+ACE Series는 다음 다섯 가지 철학을 기반으로 설계됩니다.
 
 ## Hardware Independent
 
-ACE Series is designed to work with multiple hardware vendors.
+특정 제조사에 종속되지 않습니다.
 
-Examples include:
+MYLAPS가 될 수도 있고
 
-- MYLAPS
-- Race Result
-- TAG Heuer Timing
-- ChronoTrack
-- CHAFON
-- Zebra
-- Hopeland
-- Impinj-based Readers
-- Custom Devices
+CHAFON이 될 수도 있으며
 
-No single vendor is required.
+새로운 제조사가 등장하더라도 플랫폼은 그대로 유지됩니다.
 
 ---
 
 ## Timing Technology Independent
 
-Timing technology should never dictate software architecture.
+RFID만을 위한 프로그램이 아닙니다.
 
-ACE Series supports multiple timing technologies simultaneously.
+Transponder만을 위한 프로그램도 아닙니다.
 
-```
-Timing Technologies
+ACE Series는 **계측 기술 자체를 추상화(Abstract)** 합니다.
 
-├── Passive RFID
-├── Active Transponder
-├── Photo Finish
-├── Finish Capture
-├── Optical Timing
-├── LoRa Timing
-├── GPS Timing
-├── Manual Timing
-└── Future Technologies
-```
-
-Every timing technology is treated as a timing source.
+모든 계측 기술은 하나의 Timing Source로 동작합니다.
 
 ---
 
 ## Event Driven
 
-Every timing source generates standardized timing events.
+모든 장비는 이벤트를 생성합니다.
 
-```
-          Timing Sources
+ACE Core는 이벤트만 처리합니다.
 
-RFID
-MYLAPS
-Race Result
-Photo Finish
-Finish Capture
-LoRa
-GPS
-Manual Timing
-
-          │
-
-          ▼
-
-   ACE Core Event Bus
-
-          │
-
- Race Manager
- Live Timing
- Results
- Judge UI
- REST API
- WebSocket
-```
-
-Hardware never communicates directly with the race management software.
+장비의 종류는 중요하지 않습니다.
 
 ---
 
 ## Modular
 
-```
-ACE Series
+ACE Series는 하나의 거대한 프로그램이 아닙니다.
 
-├── ACE Core
-│   ├── Event Bus
-│   ├── Plugin Framework
-│   ├── Timing SDK
-│   ├── Device Manager
-│   └── API
-│
-├── Circuit Race Manager
-├── MTB Manager
-├── BMX Manager
-├── Downhill Manager
-├── Finish Capture
-├── Finish Viewer
-├── Live Timing
-├── Judge App
-├── Marshal App
-└── Race Operations Platform
-```
-
-Every module can evolve independently.
+필요한 기능만 독립적으로 개발하고 배포할 수 있는 모듈형 플랫폼입니다.
 
 ---
 
-# Timing Sources
+## Open Architecture
 
-ACE Series supports multiple timing technologies through a common interface.
+새로운 장비가 출시되더라도
 
-```
-ITimingSource
+ACE Core를 수정하지 않고
 
-├── RFID Reader
-├── Active Transponder
-├── Photo Finish
-├── Finish Capture
-├── Optical Sensor
-├── LoRa Sensor
-├── GPS Device
-└── Manual Timing
-```
-
-All timing sources generate the same event structure.
-
-```
-TimingEvent
-
-Timestamp
-
-Participant
-
-Source
-
-Location
-
-RSSI / Signal
-
-Metadata
-```
-
-This allows race management software to remain hardware-independent.
+Plugin 또는 Driver만 추가하여 사용할 수 있도록 설계됩니다.
 
 ---
 
-# Supported Disciplines
+# 지원 경기 종목
 
-- Road Cycling
-- Mountain Bike
-- BMX Racing
-- Downhill
-- Individual Time Trial
-- Circuit Race
-- Track Cycling *(Planned)*
+ACE Series는 다양한 사이클 종목을 지원하도록 설계됩니다.
+
+- 🚴 Road Cycling
+- 🚵 Mountain Bike (XCO)
+- 🚵 Mountain Bike (XCC)
+- 🚵 Marathon (XCM)
+- 🚲 BMX Racing
+- ⛰ Downhill (DH)
+- 🛣 Individual Time Trial (ITT)
+- 🔄 Circuit Race
+- 🚴 Track Cycling *(Planned)*
 
 ---
 
-# Commercial Timing Integration
+# 지원 계측 기술
 
-ACE Series is designed to integrate with existing commercial timing systems.
+ACE Series는 하나의 계측 기술에 종속되지 않습니다.
 
-Examples include:
+## Commercial Timing Systems
 
 - MYLAPS
 - Race Result
 - TAG Heuer Timing
 - ChronoTrack
-- Professional Photo Finish Systems
-
-Commercial timing hardware remains the property of its respective manufacturers.
-
-ACE Series acts as an integration platform rather than replacing those systems.
+- 기타 상용 계측 시스템
 
 ---
 
-# Open Hardware Support
+## RFID
 
-ACE Series also supports vendor-independent hardware.
-
-Examples:
-
-Passive RFID
-
-- CHAFON
-- Hopeland
-- Zebra
-- Impinj Based Readers
-
-Custom Transponder Systems
-
-Finish Capture Cameras
-
-Optical Sensors
-
-LoRa Nodes
-
-GPS Devices
+- Passive UHF RFID
+- Multi Reader
+- Multi Antenna
 
 ---
 
-# Finish Capture
+## Active Transponder
 
-ACE Finish Capture is an integrated finish verification system.
-
-Features include:
-
-- High-speed cameras
-- Automatic frame capture
-- Rider verification
-- Manual review
-- Finish Viewer
-
-Designed to complement RFID and transponder timing.
+- Active RFID
+- Decoder Based Systems
+- Professional Timing Systems
 
 ---
 
-# Live Operations
+## Camera Based Timing
 
-ACE Series provides:
-
-- Live Timing
-- Judge Dashboard
-- Marshal Dashboard
-- TV Display
-- Mobile Applications
-- Event Monitoring
-- Race Control
+- Finish Capture
+- Photo Finish
+- High-Speed Camera
 
 ---
 
-# Connectivity
+## Sensor Based Timing
 
-Supported interfaces include:
-
-- TCP/IP
-- Ethernet
-- USB
-- RS232
-- RS485
-- WebSocket
-- REST API
-- LoRa
-- Bluetooth
-- Serial Communication
+- Optical Sensor
+- LoRa Node
+- GPS Device
+- BLE Device
+- Manual Timing
 
 ---
 
-# Designed by Officials
+# 플랫폼 구성
 
-ACE Series is developed by active cycling officials.
+```text
+ACE Series
 
-Every feature is based on real race operation experience.
+├── ACE Core
+│
+├── Circuit Race Manager
+├── MTB Manager
+├── BMX Manager
+├── Downhill Manager
+│
+├── Finish Capture
+├── Finish Viewer
+│
+├── Live Timing
+│
+├── Judge App
+├── Marshal App
+│
+└── Race Operations Platform
+```
 
-The project prioritizes:
-
-- Reliability
-- Accuracy
-- Simplicity
-- Expandability
-
----
-
-# Roadmap
-
-Current Development
-
-✅ ACE Core
-
-🚧 Race Manager
-
-🚧 RFID
-
-🚧 Active Transponder
-
-🚧 Finish Capture
-
-🚧 Live Timing
-
-🚧 Judge App
-
-📋 Marshal App
-
-📋 Cloud Services
-
-📋 AI Rider Recognition
+모든 모듈은 독립적으로 개발되고 유지됩니다.
 
 ---
 
-# Open Architecture
+# 문서 구성
 
-ACE Series encourages hardware manufacturers and developers to integrate their products through documented APIs and plugins.
+ACE Series는 코드보다 문서를 우선하는 프로젝트를 지향합니다.
 
-The goal is to build an open ecosystem for professional cycling timing.
+현재 작성 중인 공식 문서는 다음과 같습니다.
+
+| 문서 | 설명 |
+|------|------|
+| README.md | 프로젝트 소개 |
+| MANIFESTO.md | 프로젝트 선언문 |
+| DESIGN_PRINCIPLES.md | 설계 원칙 |
+| ARCHITECTURE.md | 전체 아키텍처 |
+| TIMING_SOURCES.md | 계측 기술 추상화 |
+| EVENT_BUS.md | Event Bus 구조 |
+| HARDWARE.md | 지원 하드웨어 |
+| API.md | API 명세 |
+| PLUGIN_SDK.md | Plugin 개발 가이드 |
+| ROADMAP.md | 개발 계획 |
+| GLOSSARY.md | 용어집 |
 
 ---
 
-# Philosophy
+# 현재 개발 상태
 
-> Hardware evolves.
-
-> Timing technologies change.
-
-> Competition rules evolve.
-
-**The platform should not have to be rewritten every time.**
-
-ACE Series separates race management from timing hardware, allowing organizers to adopt new technologies without rebuilding their entire software ecosystem.
+| 구성 요소 | 상태 |
+|-----------|------|
+| ACE Core | 🚧 개발 중 |
+| Circuit Race Manager | 🚧 개발 중 |
+| RFID | 🚧 개발 중 |
+| Active Transponder | 📋 계획 |
+| Finish Capture | 🚧 개발 중 |
+| Live Timing | 🚧 개발 중 |
+| Judge App | 🚧 개발 중 |
+| Marshal App | 📋 계획 |
+| Cloud Services | 📋 계획 |
 
 ---
 
-# License
+# 앞으로의 목표
 
-Project License: TBD
+ACE Series는 단순한 경기 운영 프로그램이 아닌,
+
+국제대회부터 지역 대회까지 사용할 수 있는 **개방형 사이클 계측 플랫폼(Open Cycling Timing Platform)** 을 목표로 합니다.
+
+새로운 계측 기술이 등장하더라도 플랫폼은 그대로 유지될 수 있도록 지속적으로 발전해 나갈 예정입니다.
+
+---
+
+# 프로젝트 슬로건
+
+> **Any Hardware. One Platform.**
+
+> **하드웨어는 바뀔 수 있습니다.**
+
+> **기술은 발전합니다.**
+
+> **플랫폼은 흔들리지 않아야 합니다.**
 
 ---
 
 # Contact
 
-ACE Series Development
+**ACE Series Development**
 
 Republic of Korea
 
-For collaboration, hardware integration, SDK development or partnership opportunities, please feel free to contact us.
+기술 협업, 하드웨어 연동, SDK 개발 또는 파트너십에 관심이 있으시다면 언제든지 연락해 주시기 바랍니다.
