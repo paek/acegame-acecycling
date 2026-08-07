@@ -13,8 +13,9 @@ ACE Cycling은 대한민국 사이클 대회의 다양한 정보를 쉽고 빠�
 
 ---
 
-## 문의 (Support)
+## 공식지원 / 문의 (Support)
 
+본 저장소는 **ACE Cycling** 앱의 공식 지원 페이지입니다.
 앱 이용 중 문의사항이나 오류 제보, 기능 개선 의견이 있으시면 아래 이메일로 연락해 주세요.
 
 📧 contact@acegame.com
@@ -31,4 +32,7 @@ ACE Cycling은 대한민국 사이클 대회의 다양한 정보를 쉽고 빠�
 
 ## 저작권
 
+
+
 © 2026 ACEGame. All Rights Reserved.
+
