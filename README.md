@@ -1,13 +1,13 @@
-<p align="center">
-  <img src="icons/acecycling_platform.png" width="180">
+  <img src="icons/acecycling_platform.png" width="420" alt="ACE Cycling">
 </p>
 
-# ACE Cycling
+<h1 align="center">ACE Cycling</h1>
 
-본 페이지는 ACE Cycling 앱의 공식 지원 페이지입니다.
+<p align="center">
+대한민국 사이클 대회의 일정, 경기 결과, 선수 정보 및 공지사항을 쉽고 빠르게 확인할 수 있는 모바일 애플리케이션입니다.
+</p>
 
-ACE Cycling은 대한민국에서 개최되는 다양한 사이클 대회의 일정, 결과, 선수 정보 및 공지사항을 쉽고 빠르게 확인할 수 있는 모바일 애플리케이션입니다.
-
+---
 ## 주요 기능
 
 🚴 대회 일정 조회
