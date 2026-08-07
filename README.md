@@ -1,3 +1,4 @@
+<p align="center">
   <img src="icons/acecycling_platform.png" width="420" alt="ACE Cycling">
 </p>
 
