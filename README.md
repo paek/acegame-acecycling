@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icons/acecycling_platform.png" width="420" alt="ACE Cycling">
+  <img src="icons/acecycling_platform.png" width="620" alt="ACE Cycling">
 </p>
 
 <h1 align="center">ACE Cycling</h1>
